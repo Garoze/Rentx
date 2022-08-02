@@ -1,12 +1,10 @@
 import { Repository } from "typeorm";
-import { singleton } from "tsyringe";
 
 import { Category } from "../../entities/Category";
 import { ICategoriesRepository, ICreateCategoryDTO } from "../ICategoryRepository";
 
 import { AppDataSource } from "../../../../database";
 
-@singleton()
 export class CategoryRepository implements ICategoriesRepository {
   private repository: Repository<Category>;
 

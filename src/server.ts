@@ -17,5 +17,5 @@ createConnection().then(() => {
 
   app.use(router);
 
-  return app.listen(3000, () => console.log(`Server Running on port: 3000!`));
+  return app.listen(process.env.PORT || 3000, () => console.log(`Server Running on port: 3000!`));
 });

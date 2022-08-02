@@ -15,6 +15,6 @@ export const AppDataSource = new DataSource({
   migrations: [`${__dirname}/**/migrations/*.{ts,js}`],
 })
 
-export function createConnection(host = process.env.DB_HOST || 'database'): Promise<DataSource> {
+export function createConnection(host = process.env.DB_HOST || 'localhost'): Promise<DataSource> {
   return AppDataSource.setOptions({ host }).initialize();
 }
