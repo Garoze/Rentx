@@ -15,20 +15,6 @@ services:
     volumes:
       - pgdata:/data/postgres
 
-  app:
-    build: .
-    container_name: rentx
-    restart: always
-    env_file: .env
-    ports: 
-      - ${PORT}:${PORT}
-    volumes: 
-      - .:/usr/app
-    links: 
-      - database
-    depends_on:
-      - database
-
 volumes:
   pgdata:
     driver: local
