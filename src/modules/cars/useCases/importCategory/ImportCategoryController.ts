@@ -11,6 +11,6 @@ export class ImportCategoryController {
 
     await importCategoryUseCase.execute(file as Express.Multer.File);
 
-    return response.send();
+    return response.status(201).send();
   }
 }
