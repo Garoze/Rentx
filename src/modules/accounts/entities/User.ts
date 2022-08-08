@@ -19,7 +19,11 @@ export class User {
   @Column()
   public driver_license: string;
 
+  @Column()
   public isAdmin: boolean;
+
+  @Column()
+  public avatar: string;
 
   @CreateDateColumn() 
   public created_at: Date;
