@@ -12,8 +12,18 @@
 		"esModuleInterop": true,
 		"forceConsistentCasingInFileNames": true,
 		"strict": true,
+    "skipLibCheck": true,
 		"noImplicitAny": true,
-		"strictPropertyInitialization": false
+		"strictPropertyInitialization": false,
+    "rootDir": ".",
+    "baseUrl": "src",
+    "paths": {
+      "@modules/*": ["modules/*"],
+      "@config/*": ["config/*"],
+      "@shared/*": ["shared/*"],
+      "@errors/*": ["errors/*"],
+      "@utils/*": ["utils/*"]
+    }
 	},
 	"include": ["src/**/*"],
 	"exclude": ["node_modules", "dist"],
