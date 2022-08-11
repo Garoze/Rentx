@@ -4,9 +4,9 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "dev": "nodemon --exec ts-node -r tsconfig-paths/register ./src/server.ts",
-    "migration:generate": "typeorm-ts-node-commonjs -d ./src/database/index.ts migration:generate ./src/database/migrations/default",
-    "migration:run": "typeorm-ts-node-commonjs -d ./src/database/index.ts migration:run",
+    "dev": "nodemon --exec ts-node -r tsconfig-paths/register ./src/shared/infra/http/server.ts",
+    "migration:generate": "typeorm-ts-node-commonjs -d ./src/shared/infra/typeorm/index.ts migration:generate ./src/database/migrations/default",
+    "migration:run": "typeorm-ts-node-commonjs -d ./src/shared/infra/typeorm/index.ts migration:run",
     "build": "rm -rf ./dist && tsc",
     "start": "node ./dist/index.js",
     "test": "jest"

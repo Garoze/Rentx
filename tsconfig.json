@@ -21,7 +21,7 @@
       "@modules/*": ["modules/*"],
       "@config/*": ["config/*"],
       "@shared/*": ["shared/*"],
-      "@errors/*": ["errors/*"],
+      "@errors/*": ["shared/errors/*"],
       "@utils/*": ["utils/*"]
     }
 	},

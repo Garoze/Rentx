@@ -2,14 +2,14 @@ import express, { NextFunction, Request, Response } from 'express';
 import "express-async-errors";
 import swaggerUI from 'swagger-ui-express';
 
-import { createConnection } from './database';
+import { createConnection } from '@shared/infra/typeorm';
 import { AppError } from '@errors/AppError';
 
-import { router } from './shared/infra/http/routes';
+import { router } from '@shared/infra/http/routes';
 
 import '@shared/container';
 
-import swaggerFile from './swagger.json';
+import swaggerFile from '../../../swagger.json';
 
 createConnection().then(() => {
 	const app = express();
