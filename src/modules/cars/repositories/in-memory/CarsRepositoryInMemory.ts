@@ -31,7 +31,8 @@ export class CarsRepositoryInMemory implements ICarsRepository {
     return newCar;
   }
 
-  async findByLicensePlate(license_plate: string): Promise<Car | undefined> {
-    return this.cars.find((car) => car.license_plate === license_plate);
+  async findByLicensePlate(license_plate: string): Promise<Car | null> {
+    const car = this.cars.find((car) => car.license_plate === license_plate);
+    return car || null;
   }
 }
