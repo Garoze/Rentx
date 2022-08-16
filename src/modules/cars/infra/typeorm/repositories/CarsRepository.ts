@@ -1,4 +1,4 @@
-import { CannotReflectMethodParameterTypeError, Repository } from "typeorm";
+import { Repository } from "typeorm";
 
 import { ICreateCarDTO } from "@modules/cars/dtos/ICreateCarDTO";
 import { ICarsRepository } from "@modules/cars/repositories/ICarsRepository";
@@ -20,7 +20,9 @@ export class CarsRepository implements ICarsRepository {
     license_plate,
     fine_amount,
     brand,
-    category_id
+    category_id,
+    specifications,
+    id
   }: ICreateCarDTO): Promise<Car> {
     const newCar = this.repository.create({
       name,
@@ -29,7 +31,9 @@ export class CarsRepository implements ICarsRepository {
       license_plate,
       fine_amount,
       brand,
-      category_id
+      category_id,
+      specifications,
+      id
     }) 
 
     await this.repository.save(newCar);
@@ -61,5 +65,10 @@ export class CarsRepository implements ICarsRepository {
     const carList = await carsQuery.getMany();
 
     return carList;
+  }
+
+  async findById(car_id: string): Promise<Car | null> {
+    const car = await this.repository.findOne({ where: { id: car_id }});
+    return car;
   }
 }
