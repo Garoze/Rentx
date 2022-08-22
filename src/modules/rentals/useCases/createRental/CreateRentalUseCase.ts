@@ -1,9 +1,7 @@
-import dayjs from "dayjs";
-import utc from "dayjs/plugin/utc";
-
 import { AppError } from "@shared/errors/AppError";
-import { IRentalsRepository } from "@modules/rentals/repositories/IRentalsRepository";
 import { Rental } from "@modules/rentals/infra/typeorm/entities/Rental";
+import { IRentalsRepository } from "@modules/rentals/repositories/IRentalsRepository";
+import { IDateProvider } from "@shared/container/providers/DateProvider/IDateProvider";
 
 interface IRequest {
   car_id: string;
@@ -11,15 +9,14 @@ interface IRequest {
   expected_return_date: Date;
 }
 
-dayjs.extend(utc);
-
 export class CreateRentalUseCase {
   constructor(
-    private rentalsRepository: IRentalsRepository
+    private rentalsRepository: IRentalsRepository,
+    private dateProvider: IDateProvider
   ) {}
 
   async execute({ car_id, user_id, expected_return_date }: IRequest): Promise<Rental | null> {
-    const MINRENTHOURS = 24;
+    const MIN_RENT_HOURS = 24;
 
     const carUnavailable = await this.rentalsRepository.findOpenRentalByCarId(car_id);
 
@@ -33,12 +30,10 @@ export class CreateRentalUseCase {
       throw new AppError("There's a rental already open for this user");
     }
       
-    const expectedReturnDateFormat = dayjs(expected_return_date).utc().local().format();
-    const dateNowFormat = dayjs().utc().local().format();
+    const dateNow = this.dateProvider.dateNow();
+    const compare = this.dateProvider.compareInHours(dateNow, expected_return_date);
 
-    const compare = dayjs(expectedReturnDateFormat).diff(dateNowFormat, "hours");
-
-    if (compare < MINRENTHOURS) {
+    if (compare < MIN_RENT_HOURS) {
       throw new AppError("The minimum amount of hours for rent is 24");
     }
 
