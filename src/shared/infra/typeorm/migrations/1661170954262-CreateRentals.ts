@@ -1,3 +1,4 @@
+import { truncate } from "fs";
 import { MigrationInterface, QueryRunner, Table } from "typeorm"
 
 export class CreateRentals1661170954262 implements MigrationInterface {
@@ -28,6 +29,7 @@ export class CreateRentals1661170954262 implements MigrationInterface {
             {
               name: "end_date",
               type: "timestamp",
+              isNullable: true,
             },
             {
               name: "expected_return_date",
@@ -35,7 +37,8 @@ export class CreateRentals1661170954262 implements MigrationInterface {
             },
             {
               name: "total",
-              type: "numeric"
+              type: "numeric",
+              isNullable: true,
             },
             {
               name: "created_at",
