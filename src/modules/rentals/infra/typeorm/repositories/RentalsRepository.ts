@@ -28,4 +28,8 @@ export class RentalsRepository implements IRentalsRepository {
   async findOpenRentalByUserId(user_id: string): Promise<Rental | null> {
     return await this.repository.findOne({ where: { user_id }});
   }
+
+  async findById(id: string): Promise<Rental | null> {
+    return await this.repository.findOne({ where: { id }});
+  }
 }
