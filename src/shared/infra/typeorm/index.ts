@@ -16,5 +16,10 @@ export const AppDataSource = new DataSource({
 })
 
 export function createConnection(host = process.env.DB_HOST || 'localhost'): Promise<DataSource> {
-  return AppDataSource.setOptions({ host }).initialize();
+  return AppDataSource.setOptions({ 
+    host: process.env.NODE_ENV === "test" ? "localhost" : host,
+    database: process.env.NODE_ENV === "test" 
+      ? "rentx_test" 
+      : process.env.DB_NAME
+  }).initialize();
 }
