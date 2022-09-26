@@ -13,8 +13,23 @@ export class RentalsRepository implements IRentalsRepository {
     this.repository = AppDataSource.getRepository(Rental);
   }
 
-  async create({ car_id, user_id, expected_return_date }: ICreateRentalsDTO): Promise<Rental | null> {
-    const newRental = this.repository.create({ car_id, user_id, expected_return_date });
+  async create({ 
+    car_id, 
+    user_id, 
+    expected_return_date,
+    id,
+    end_date,
+    total
+  }: ICreateRentalsDTO): Promise<Rental | null> {
+
+    const newRental = this.repository.create({ 
+      car_id, 
+      user_id, 
+      expected_return_date,
+      id,
+      end_date,
+      total
+    });
     
     await this.repository.save(newRental);
 
