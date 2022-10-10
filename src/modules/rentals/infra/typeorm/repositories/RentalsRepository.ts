@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 import { IsNull, Repository } from "typeorm";
+=======
+import { Repository, IsNull } from "typeorm";
+>>>>>>> c8c5012 (fix(tests): Fixed some tests using another repo)
 
 import { Rental } from "../entities/Rental";
 import { AppDataSource } from "@shared/infra/typeorm";
@@ -26,7 +30,11 @@ export class RentalsRepository implements IRentalsRepository {
       car_id, 
       user_id, 
       expected_return_date,
+<<<<<<< HEAD
       id,
+=======
+      id, 
+>>>>>>> c8c5012 (fix(tests): Fixed some tests using another repo)
       end_date,
       total
     });
@@ -43,12 +51,17 @@ export class RentalsRepository implements IRentalsRepository {
   }
 
   async findOpenRentalByUserId(user_id: string): Promise<Rental | null> {
+<<<<<<< HEAD
     return await this.repository.findOne({ 
+=======
+    return await this.repository.findOne({
+>>>>>>> c8c5012 (fix(tests): Fixed some tests using another repo)
       where: { user_id, end_date: IsNull() }
     });
   }
 
   async findById(id: string): Promise<Rental | null> {
+<<<<<<< HEAD
     return await this.repository.findOne({ where: { id }});
   }
 
@@ -57,6 +70,9 @@ export class RentalsRepository implements IRentalsRepository {
       where: { user_id },
       relations: ["car"]
     }) 
+=======
+    const rental = await this.repository.findOne({ where: { id } });
+>>>>>>> c8c5012 (fix(tests): Fixed some tests using another repo)
 
     return rental || null; 
   }
