@@ -1,4 +1,4 @@
-import { Repository } from "typeorm";
+import { IsNull, Repository } from "typeorm";
 
 import { Rental } from "../entities/Rental";
 import { AppDataSource } from "@shared/infra/typeorm";
@@ -37,14 +37,27 @@ export class RentalsRepository implements IRentalsRepository {
   }
   
   async findOpenRentalByCarId(car_id: string): Promise<Rental | null> {
-    return await this.repository.findOne({ where: { car_id }}) ;
+    return await this.repository.findOne({ 
+      where: { car_id, end_date: IsNull() }
+    }) ;
   }
 
   async findOpenRentalByUserId(user_id: string): Promise<Rental | null> {
-    return await this.repository.findOne({ where: { user_id }});
+    return await this.repository.findOne({ 
+      where: { user_id, end_date: IsNull() }
+    });
   }
 
   async findById(id: string): Promise<Rental | null> {
     return await this.repository.findOne({ where: { id }});
+  }
+
+  async findByUserId(user_id: string): Promise<Rental[] | null> {
+    const rental = await this.repository.find({
+      where: { user_id },
+      relations: ["car"]
+    }) 
+
+    return rental || null; 
   }
 }
