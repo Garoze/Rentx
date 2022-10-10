@@ -54,6 +54,6 @@ export class CreateRentalUseCase {
 
     await this.carsRepository.updateAvailable(car_id, false);
 
-    return rental || null;
+    return rental;
   }
 }

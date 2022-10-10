@@ -41,13 +41,10 @@ export class RentalsRepositoryInMemory implements IRentalsRepository {
 
     return rental || null;
   }
-<<<<<<< HEAD
-=======
 
   async findByUserId(user_id: string): Promise<Rental[] | null> {
     const rentals = this.rentals.filter((rental) => rental.user_id === user_id);
 
     return rentals || null;
   }
->>>>>>> c8c5012 (fix(tests): Fixed some tests using another repo)
 }

@@ -1,11 +1,6 @@
-<<<<<<< HEAD
 import { container } from "tsyringe";
 import { Request, Response } from "express";
 
-=======
-import { Request, Response } from "express";
-import { container } from "tsyringe";
->>>>>>> c8c5012 (fix(tests): Fixed some tests using another repo)
 import { DevolutionRentalUseCase } from "./DevolutionRentalUseCase";
 
 export class DevolutionRentalController {
@@ -17,11 +12,7 @@ export class DevolutionRentalController {
     const devolutionUseCase = container.resolve(DevolutionRentalUseCase);
 
     const rental = await devolutionUseCase.execute({
-<<<<<<< HEAD
-      id, 
-=======
       id,
->>>>>>> c8c5012 (fix(tests): Fixed some tests using another repo)
       user_id
     });
 
