@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "nodemon --exec ts-node -r tsconfig-paths/register ./src/shared/infra/http/server.ts",
     "migration:generate": "typeorm-ts-node-commonjs -d ./src/shared/infra/typeorm/index.ts migration:generate ./src/database/migrations/default",
-    "migration:run": "typeorm-ts-node-commonjs -d ./src/shared/infra/typeorm/index.ts migration:run",
+    "migration:run": "./node_modules/.bin/ts-node -r tsconfig-paths/register ./node_modules/.bin/typeorm migration:run -d ./src/shared/infra/typeorm/index.ts",
     "build": "rm -rf ./dist && tsc",
     "start": "node ./dist/index.js",
     "test": "NODE_ENV=test jest --runInBand --detectOpenHandles",
