@@ -9,7 +9,7 @@
     "migration:run": "typeorm-ts-node-commonjs -d ./src/shared/infra/typeorm/index.ts migration:run",
     "build": "rm -rf ./dist && tsc",
     "start": "node ./dist/index.js",
-    "test": "NODE_ENV=test jest --runInBand",
+    "test": "NODE_ENV=test jest --runInBand --detectOpenHandles",
     "seed:admin": "ts-node -r tsconfig-paths/register ./src/shared/infra/typeorm/seed/admin.ts"
   },
   "devDependencies": {
