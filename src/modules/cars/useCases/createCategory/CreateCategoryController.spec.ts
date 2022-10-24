@@ -27,14 +27,14 @@ describe("Create Category Controller", () => {
   })
 
   it("should be able to create a new category", async () => {
-    const responseToken = await request(app)
+    const responserefresh_token = await request(app)
       .post("/sessions")
       .send({ 
         email: "admin@rentx.com",
         password: "admin"
       })
 
-    const { token } = responseToken.body;
+    const { refresh_token } = responserefresh_token.body;
 
     const response = await request(app)
       .post("/categories")
@@ -43,21 +43,21 @@ describe("Create Category Controller", () => {
         description: "Supertest Category description"
       })
       .set({
-        Authorization: `Bearer ${token}` 
+        Authorization: `Bearer ${refresh_token}` 
     })
 
     expect(response.status).toBe(201);
   });
 
   it("should not be able to create a category that already exists", async () => {
-    const responseToken = await request(app)
+    const responserefresh_token = await request(app)
       .post("/sessions")
       .send({ 
         email: "admin@rentx.com",
         password: "admin"
       })
 
-    const { token } = responseToken.body;
+    const { refresh_token } = responserefresh_token.body;
 
     const response = await request(app)
       .post("/categories")
@@ -66,7 +66,7 @@ describe("Create Category Controller", () => {
         description: "Supertest Category description"
       })
       .set({
-        Authorization: `Bearer ${token}` 
+        Authorization: `Bearer ${refresh_token}` 
       })
 
       expect(response.status).toBe(400);
